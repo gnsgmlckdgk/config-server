@@ -10,9 +10,12 @@ server:
 spring:
   application:
     name: config-server
+  lifecycle:
+    timeout-per-shutdown-phase: 15s # 15초의 종료기간을 둔다.
   cloud:
     config:
       server:
+        shutdown: graceful  # 우아한 종료 활성화
         git:
           uri: https://github.com/gnsgmlckdgk/config-repo # 설정 데이터 저장 백엔드로 사용할 원격 깃 저장소 URL
           default-label: main # 서버는 이 설정에 따라 기본적으로 main 브랜치에서 설정 데이터를 반환한다.
